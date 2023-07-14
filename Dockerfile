@@ -7,4 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# VOLUME ["./invits"]
+
 CMD [ "python", "./qrCodeGenerator.py" ]
