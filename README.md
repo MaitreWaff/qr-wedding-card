@@ -8,18 +8,6 @@ the table reserved for them
 
 All credit goes to @MaitreWaff.
 
-Run the script
-
-# docker build . -t waffoluc/qrcodegen:v1.0
-
-# docker run -it -v ./invits:/usr/src/app/invits waffoluc/qrcodegen python /usr/src/app/qrCodeGenerator.py
-
-# docker run -it -v ./invits:/usr/src/app/invits waffoluc/qrcodegen:v1.0 python /usr/src/app/qrCodeGenerator.py
-
-This way, docker will create the container and execute the python script qrCodeGenerator.py.
-The python code will look into the current folder for an excel file named "invitations.xlsx" and create all the QR Codes in the ./invits folder.
-
-# python ./qrCodeGenerator.py
 
 Python Version
 
@@ -42,12 +30,33 @@ wheel             0.40.0
 
 
 
+Run the script
+
+# git clone https://github.com/MaitreWaff/qr-wedding-card.git
+
+# cd qr-wedding-card
+
+# docker build . -t qrcodegen
+
+On Windows
+# docker run -it -v .\BilletsNumeriques:/usr/src/app/invits qrcodegen python /usr/src/app/qrCodeGenerator.py
+
+On Linux or Mac
+
+# docker run -it -v ./BilletsNumeriques:/usr/src/app/invits qrcodegen python /usr/src/app/qrCodeGenerator.py
+
+This way, docker will create the container and execute the python script qrCodeGenerator.py.
+The python code will look into the current folder for an excel file named "invitations.xlsx" and create all the QR Codes in the ./BilletsNumeriques folder.
+
+# python ./qrCodeGenerator.py
+
+
 docker build . -t waffoluc/qrcodegen
 
 docker run -it -v ./invits:/usr/src/app/invits waffoluc/qrcodegen sh
 
 
-# docker run -it -v ./invits:/usr/src/app/invits waffoluc/qrcodegen sh
+# docker run -it -v ./invits:/usr/src/app/invits qrcodegen sh
 # python qrCodeGenerator.py
 /usr/src/app/qrCodeGenerator.py:20: DeprecationWarning: ANTIALIAS is deprecated and will be removed in Pillow 10 (2023-07-01). Use LANCZOS or Resampling.LANCZOS instead.
   logo = logo.resize((basewidth, hsize), Image.ANTIALIAS)
